@@ -1,8 +1,12 @@
 package com.codestates.helper.email;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SimpleEmailSendable implements EmailSendable {
+
     @Override
     public void send(String message) {
-        // TODO 간단한 문자열 형태의 이메일 구현에 대한 로직을 구성할 수 있습니다.
+        log.info("Sent simple email!");
     }
 }

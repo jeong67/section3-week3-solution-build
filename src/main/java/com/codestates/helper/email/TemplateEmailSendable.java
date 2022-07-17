@@ -1,5 +1,8 @@
 package com.codestates.helper.email;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class TemplateEmailSendable implements EmailSendable {
     @Override
     public void send(String message) {
