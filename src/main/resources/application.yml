@@ -1,2 +1,10 @@
-# 일반적으로 애플리케이션 실행 환경에 상관없는 공통 정보들은 application.yml에 설정할 수 있습니다.
-# 현재 아무 설정이 없으므로, local 환경에서 실행하려면 프로파일을 설정하세요.
+spring:
+  sql:
+    init:
+      schema-locations: classpath*:db/h2/schema.sql   // (1)
+      data-locations: classpath*:db/h2/data.sql       // (2)
+logging:
+  level:
+    org:
+      springframework:
+        r2dbc: DEBUG

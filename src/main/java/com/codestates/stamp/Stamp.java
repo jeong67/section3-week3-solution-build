@@ -1,33 +1,32 @@
 package com.codestates.stamp;
 
-import com.codestates.audit.Auditable;
-import com.codestates.member.entity.Member;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-import javax.persistence.*;
+import java.time.LocalDateTime;
 
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@Entity
-public class Stamp extends Auditable {
+@Table
+public class Stamp {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long stampId;
-
-    @Column(nullable = false)
+    private long stampId;
     private int stampCount;
+    private long memberId;    // (1)
 
-    @OneToOne
-    @JoinColumn(name = "MEMBER_ID")
-    private Member member;
+    @CreatedDate
+    private LocalDateTime createdAt;
 
-    public void setMember(Member member) {
-        this.member = member;
-        if (member.getStamp() != this) {
-            member.setStamp(this);
-        }
+    @LastModifiedDate
+    @Column("last_modified_at")
+    private LocalDateTime modifiedAt;
+
+    public Stamp(long memberId) {
+        this.memberId = memberId;
     }
 }
